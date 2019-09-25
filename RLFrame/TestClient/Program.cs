@@ -3,19 +3,16 @@ using SadConsole;
 using Console = SadConsole.Console;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TestClient;
 
 namespace RLFrame
 {
     class Program
     {
-
-        public const int Width = 80;
-        public const int Height = 25;
-
         static void Main(string[] args)
         {
             // Setup the engine and create the main window.
-            SadConsole.Game.Create(Width, Height);
+            SadConsole.Game.Create(HUD.Width, HUD.Height);
 
             // Hook the start event so we can add consoles to the system.
             SadConsole.Game.OnInitialize = Init;
@@ -27,11 +24,12 @@ namespace RLFrame
 
         private static void Init()
         {
-            // Any startup code for your game. We will use an example console for now
-            var startingConsole = SadConsole.Global.CurrentScreen;
-            startingConsole.FillWithRandomGarbage();
-            startingConsole.Fill(new Rectangle(3, 3, 27, 5), null, Color.Black, 0, SpriteEffects.None);
-            startingConsole.Print(6, 5, "Hello from SadConsole", ColorAnsi.CyanBright);
+            HUD.InitHUD();
+            HUD.GameMap.DrawLine(new Point(0, 0), new Point(60, 0), Color.White, Color.Black, '#');
+            // Set the background
+            //HUD.SkillsConsole.SetBackground(0, 0, Microsoft.Xna.Framework.Color.BlanchedAlmond);
+            //GameMap.SetBackground(0, 0, Microsoft.Xna.Framework.Color.Purple);
+            //Sidebar.SetBackground(0, 0, Microsoft.Xna.Framework.Color.Green);
         }
     }
 }
