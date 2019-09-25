@@ -12,7 +12,7 @@ namespace RLFrame
         static void Main(string[] args)
         {
             // Setup the engine and create the main window.
-            SadConsole.Game.Create(HUD.Width, HUD.Height);
+            SadConsole.Game.Create(HUD.WindowWidth, HUD.WindowHeight);
 
             // Hook the start event so we can add consoles to the system.
             SadConsole.Game.OnInitialize = Init;
@@ -25,11 +25,7 @@ namespace RLFrame
         private static void Init()
         {
             HUD.InitHUD();
-            HUD.GameMap.DrawLine(new Point(0, 0), new Point(60, 0), Color.White, Color.Black, '#');
-            // Set the background
-            //HUD.SkillsConsole.SetBackground(0, 0, Microsoft.Xna.Framework.Color.BlanchedAlmond);
-            //GameMap.SetBackground(0, 0, Microsoft.Xna.Framework.Color.Purple);
-            //Sidebar.SetBackground(0, 0, Microsoft.Xna.Framework.Color.Green);
+            HUD.MapConsole.DrawLine(new Point(0, 0), new Point(HUD.MapWidth, 0), Color.White, Color.Black, '#');
         }
     }
 }
