@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace TestClient
+namespace ConsoleLayers
 {
     public class CustomConsole : SadConsole.Console
     {

@@ -4,7 +4,7 @@ using SadConsole;
 using System;
 using Console = SadConsole.Console;
 
-namespace RLFrame
+namespace ConsoleLayers
 {
     class TitleConsole : Console
     {
