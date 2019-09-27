@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "TestClient\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleLayers", "ConsoleLayers\ConsoleLayers.csproj", "{AB14DF0F-1C81-4D42-913E-C1529D7CB3C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSystems", "GameSystems\GameSystems.csproj", "{797183CA-AD7B-47C3-8927-8CDA008DC7F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AB14DF0F-1C81-4D42-913E-C1529D7CB3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB14DF0F-1C81-4D42-913E-C1529D7CB3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB14DF0F-1C81-4D42-913E-C1529D7CB3C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797183CA-AD7B-47C3-8927-8CDA008DC7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797183CA-AD7B-47C3-8927-8CDA008DC7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797183CA-AD7B-47C3-8927-8CDA008DC7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797183CA-AD7B-47C3-8927-8CDA008DC7F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
