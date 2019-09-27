@@ -6,13 +6,12 @@ using Microsoft.Xna.Framework.Graphics;
 using ConsoleLayers;
 using GameSystems;
 using Microsoft.Xna.Framework.Input;
+using DataModels;
 
 namespace RLFrame
 {
-    class Program
+    public class Program
     {
-        private static SadConsole.Entities.Entity player;
-
         static void Main(string[] args)
         {
             // Setup the engine and create the main window.
@@ -35,29 +34,26 @@ namespace RLFrame
         private static void Update(GameTime time)
         {
             // Called each logic update.            
-            InputHandling.TakeInput(player);
+            InputHandling.TakeInput(MapGenerator.Player);
         }
 
         private static void Init()
         {
-            HUD.InitHUD();
-            //HUD.MapConsole.DrawLine(new Point(0, 0), new Point(HUD.MapWidth, 0), Color.White, Color.Black, '#');
+            // Build the room's walls then carve out some floors
+            //MapGenerator.CreateWalls(HUD.MapWidth, HUD.MapHeight);
+            //MapGenerator.CreateFloors(1, 1, HUD.MapWidth-1, HUD.MapHeight-1);
+            // Initialize an empty map
+            MapGenerator.GameMap = new Map(HUD.MapWidth, HUD.MapHeight);
+
+            // Instantiate a new map generator and
+            // populate the map with rooms and tunnels
+            MapGenerator mapGen = new MapGenerator();
+            MapGenerator.GameMap = mapGen.GenerateMap(HUD.MapWidth, HUD.MapHeight, MapGenerator.MaxRooms, MapGenerator.MinRoomSize, MapGenerator.MaxRoomSize);
+
+            HUD.InitHUD(MapGenerator.GameMap.Tiles);
 
             //create an instance of the player
-            CreatePlayer();
-
-            // add the player Entity to our console
-            // so it will display on screen
-            HUD.MapConsole.Children.Add(player);
-        }
-
-        // Create a player using SadConsole's Entity class
-        private static void CreatePlayer()
-        {
-            player = new SadConsole.Entities.Entity(1, 1);
-            player.Animation.CurrentFrame[0].Glyph = '@';
-            player.Animation.CurrentFrame[0].Foreground = Color.HotPink;
-            player.Position = new Point(20, 10);
+            MapGenerator.CreatePlayer();
         }
     }
 }

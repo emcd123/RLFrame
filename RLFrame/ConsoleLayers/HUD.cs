@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DataModels;
+using Microsoft.Xna.Framework;
+using SadConsole;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,17 +29,19 @@ namespace ConsoleLayers
 
         public static CustomConsole SkillsConsole { get; set; }
         public static CustomConsole MapConsole { get; set; }
+        public static ScrollingConsole MapScrollConsole { get; set; }
         public static CustomConsole SidebarInventory { get; set; }
         public static CustomConsole SidebarPlayerProfile { get; set; }
         public static CustomConsole MessageConsole { get; set; }
 
-        public static void InitHUD()
+        public static void InitHUD(TileBase[] tiles)
         {
             var console = new SadConsole.Console(WindowWidth, WindowHeight);
             SadConsole.Global.CurrentScreen = console;
 
             SkillsConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Blue, SkillsWidth, SkillsHeight) { Position = new Point(0, 0) };
             MapConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Black, MapWidth, MapHeight) { Position = new Point(0, 5) };
+            MapScrollConsole = new ScrollingConsole(MapWidth, MapHeight, Global.FontDefault, new Rectangle(0, 0, MapWidth, MapHeight), tiles);
             SidebarInventory = new CustomConsole(Microsoft.Xna.Framework.Color.Green, InventoryWidth, InventoryHeight) { Position = new Point(60, 0) };
             SidebarPlayerProfile = new CustomConsole(Microsoft.Xna.Framework.Color.Red, ProfileWidth, ProfileHeight) { Position = new Point(60, 10) };
             MessageConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Yellow, MessageWidth, MessageHeight) { Position = new Point(0, 25) };
@@ -47,6 +51,8 @@ namespace ConsoleLayers
             console.Children.Add(SidebarInventory);
             console.Children.Add(SidebarPlayerProfile);
             console.Children.Add(MessageConsole);
+
+            MapConsole.Children.Add(MapScrollConsole);
         }
     }
 }

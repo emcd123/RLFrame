@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleLayers\ConsoleLayers.csproj" />
+    <ProjectReference Include="..\DataModels\DataModels.csproj" />
     <ProjectReference Include="..\GameSystems\GameSystems.csproj" />
   </ItemGroup>
+
 
 </Project>

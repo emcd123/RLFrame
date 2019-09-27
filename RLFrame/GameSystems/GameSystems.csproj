@@ -9,4 +9,9 @@
     <PackageReference Include="SadConsole" Version="8.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleLayers\ConsoleLayers.csproj" />
+    <ProjectReference Include="..\DataModels\DataModels.csproj" />
+  </ItemGroup>
+
 </Project>
