@@ -48,7 +48,7 @@ namespace RLFrame
             // Instantiate a new map generator and
             // populate the map with rooms and tunnels
             MapGenerator mapGen = new MapGenerator();
-            MapGenerator.GameMap = mapGen.GenerateMap(HUD.MapWidth, HUD.MapHeight, MapGenerator.MaxRooms, MapGenerator.MinRoomSize, MapGenerator.MaxRoomSize);
+            MapGenerator.GameMap = mapGen.GenerateMap(MapGenerator.GameMap.Width, MapGenerator.GameMap.Height, MapGenerator.MaxRooms, MapGenerator.MinRoomSize, MapGenerator.MaxRoomSize);
 
             HUD.InitHUD(MapGenerator.GameMap.Tiles);
 

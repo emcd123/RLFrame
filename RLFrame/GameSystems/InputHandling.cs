@@ -23,6 +23,7 @@ namespace GameSystems
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Up))
             {
                 MapGenerator.MovePlayerBy(new Point(0, -1));
+                MapGenerator.CenterOnPlayer();
             }
 
             // Keyboard movement for Player character: Down arrow
@@ -30,6 +31,7 @@ namespace GameSystems
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Down))
             {
                 MapGenerator.MovePlayerBy(new Point(0, 1));
+                MapGenerator.CenterOnPlayer();
             }
 
             // Keyboard movement for Player character: Left arrow
@@ -37,6 +39,7 @@ namespace GameSystems
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Left))
             {
                 MapGenerator.MovePlayerBy(new Point(-1, 0));
+                MapGenerator.CenterOnPlayer();
             }
 
             // Keyboard movement for Player character: Right arrow
@@ -44,6 +47,7 @@ namespace GameSystems
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Right))
             {
                 MapGenerator.MovePlayerBy(new Point(1, 0));
+                MapGenerator.CenterOnPlayer();
             }
         }
 
