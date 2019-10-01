@@ -34,6 +34,8 @@ namespace ConsoleLayers
         public static CustomConsole SidebarPlayerProfile { get; set; }
         public static CustomConsole MessageConsole { get; set; }
 
+        public static MessageLogWindow MessageLog;
+
         public static void InitHUD(TileBase[] tiles)
         {
             var console = new SadConsole.Console(WindowWidth, WindowHeight);
@@ -44,7 +46,8 @@ namespace ConsoleLayers
             MapScrollConsole = new ScrollingConsole(MapWidth, MapHeight, Global.FontDefault, new Rectangle(0, 0, MapWidth, MapHeight), tiles);
             SidebarInventory = new CustomConsole(Microsoft.Xna.Framework.Color.Green, InventoryWidth, InventoryHeight) { Position = new Point(60, 0) };
             SidebarPlayerProfile = new CustomConsole(Microsoft.Xna.Framework.Color.Red, ProfileWidth, ProfileHeight) { Position = new Point(60, 10) };
-            MessageConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Yellow, MessageWidth, MessageHeight) { Position = new Point(0, 25) };
+            MessageConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Black, MessageWidth, MessageHeight) { Position = new Point(0, 25) };
+            MessageLog = new MessageLogWindow(MessageWidth, MessageHeight, "Message Log");
 
             console.Children.Add(SkillsConsole);
             console.Children.Add(MapConsole);
@@ -53,6 +56,29 @@ namespace ConsoleLayers
             console.Children.Add(MessageConsole);
 
             MapConsole.Children.Add(MapScrollConsole);
+
+            MessageConsole.Children.Add(MessageLog);
+            MessageConsole.Fill(Color.Black, Color.Black, 176);
+            MessageLog.Fill(Color.Black, Color.Black, 176);
+            MessageLog.Show();
+            MessageLog.Position = new Point(0, 0);
+
+            MessageLog.Add("Testing 123");
+            MessageLog.Add("Testing 1224");
+            MessageLog.Add("Testing 123");
+            MessageLog.Add("Testing 12543");
+            MessageLog.Add("Testing 123");
+            MessageLog.Add("Testing 1253");
+            MessageLog.Add("Testing 1212");
+            MessageLog.Add("Testing 1");
+            MessageLog.Add("Testing");
+            MessageLog.Add("Testing 122");
+            MessageLog.Add("Testing 51");
+            MessageLog.Add("Testing");
+            MessageLog.Add("Testing 162");
+            MessageLog.Add("Testing 16");
+            MessageLog.Add("Testing Last");
+
         }
     }
 }
