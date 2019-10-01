@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SadConsole;
+using SadConsole.Themes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,10 +33,7 @@ namespace ConsoleLayers
         // Create a new window with the title centered
         // the window is draggable by default
         public MessageLogWindow(int width, int height, string title) : base(width, height)
-        {
-            // Ensure that the window background is the correct colour
-            Theme.WindowTheme.FillStyle.Background = DefaultBackground;
-            Fill(Color.Black, Color.Black, 176);
+        {            
             _lines = new Queue<string>();
             CanDrag = true;
             Title = title.Align(HorizontalAlignment.Left, Width);
@@ -50,6 +48,8 @@ namespace ConsoleLayers
             _messageScrollBar = new SadConsole.Controls.ScrollBar(SadConsole.Orientation.Vertical, height - _windowBorderThickness);
             _messageScrollBar.Position = new Point(_messageConsole.Width + 1, _messageConsole.Position.X);
             _messageScrollBar.IsEnabled = false;
+
+            //_messageScrollBar.Theme.Colors.ControlHostFore = Color.White;
             _messageScrollBar.ValueChanged += MessageScrollBar_ValueChanged;
             Add(_messageScrollBar);
 
