@@ -2,25 +2,17 @@
 using DataModels;
 using Microsoft.Xna.Framework;
 using SadConsole;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GameSystems
+namespace GameSystems.CommandSystem
 {
-    // Contains all generic actions performed on entities and tiles
-    // including combat, movement, and so on.
-
-    public class CommandManager
+    public class CommandHelpers
     {
-        public CommandManager() { }
-
         // Move the actor BY +/- X&Y coordinates
         // returns true if the move was successful
         // and false if unable to move there
-        public static void MoveActorBy(Actor actor, Point position)
+        public static void MoveActorBy(Actor actor, Point offset)
         {
-            MoveTo(actor, position);
+            MoveTo(actor, offset);
         }
 
         // Moves the Actor TO newPosition location

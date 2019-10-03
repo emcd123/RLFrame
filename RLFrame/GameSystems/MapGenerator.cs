@@ -15,7 +15,6 @@ namespace GameSystems
         public static Random rng = new Random();
         public static Map GameMap { get; set; }
         public static Player Player { get; set; }
-        //public static TileBase[] Tiles { get; set; } // an array of TileBase that contains all of the tiles for a map
 
         public static int MaxRooms = 500;
         public static int MinRoomSize = 4;
