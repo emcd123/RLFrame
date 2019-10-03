@@ -41,40 +41,26 @@ namespace GameSystems
             // so it will display on screen
             HUD.MapScrollConsole.Children.Add(MapGenerator.Player);
         }
-
-        // Moves the Actor BY positionChange tiles in any X/Y direction
-        // returns true if actor was able to move, false if failed to move
-        public static bool MovePlayerBy(Point positionChange)
+        #region Alternate Create Player
+        // Create a player using the Player class
+        // and set its starting position
+        private void CreatePlayerAlt()
         {
-            // Check the map if we can move to this new position
-            if (IsTileWalkable(Player.Position + positionChange, HUD.MapWidth, HUD.MapHeight))
+            Player = new Player(Color.Yellow, Color.Transparent);
+
+            // Place the player on the first non-movement-blocking tile on the map
+            for (int i = 0; i < GameMap.Tiles.Length; i++)
             {
-                Player.Position += positionChange;
-                return true;
+                if (!GameMap.Tiles[i].IsBlockingMove)
+                {
+                    // Set the player's position to the index of the current map position
+                    Player.Position = SadConsole.Helpers.GetPointFromIndex(i, GameMap.Width);
+                }
             }
-            else
-                return false;
+            // Add the ViewPort sync component to the player entity
+            Player.Components.Add(new EntityViewSyncComponent());
         }
-
-        // Moves the Actor TO newPosition location
-        // returns true if actor was able to move, false if failed to move
-        public bool MoveTo(Point newPosition)
-        {
-            Player.Position = newPosition;
-            return true;
-        }
-
-        // centers the viewport camera on an Actor
-        public static void CenterOnPlayer()
-        {
-            HUD.MapScrollConsole.CenterViewPortOnPoint(Player.Position);
-        }
-
-        // centers the viewport camera on an Actor
-        public static void CenterOnActor(Actor actor)
-        {
-            HUD.MapScrollConsole.CenterViewPortOnPoint(actor.Position);
-        }
+        #endregion
 
         // Carve out a rectangular floor using the TileFloors class
         public static void CreateFloors(int x_start, int y_start, int room_width, int room_height)

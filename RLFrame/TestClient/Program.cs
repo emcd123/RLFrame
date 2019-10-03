@@ -44,13 +44,15 @@ namespace RLFrame
             //MapGenerator.CreateFloors(1, 1, HUD.MapWidth-1, HUD.MapHeight-1);
             // Initialize an empty map
             MapGenerator.GameMap = new Map(HUD.MapWidth, HUD.MapHeight);
-
             // Instantiate a new map generator and
             // populate the map with rooms and tunnels
             MapGenerator mapGen = new MapGenerator();
             MapGenerator.GameMap = mapGen.GenerateMap(MapGenerator.GameMap.Width, MapGenerator.GameMap.Height, MapGenerator.MaxRooms, MapGenerator.MinRoomSize, MapGenerator.MaxRoomSize);
 
             HUD.InitHUD(MapGenerator.GameMap.Tiles);
+
+            //Initialise an instance of a commandmanager into the static Commands property
+            //CommandManager.Commands = new CommandManager();
 
             //create an instance of the player
             MapGenerator.CreatePlayer();
