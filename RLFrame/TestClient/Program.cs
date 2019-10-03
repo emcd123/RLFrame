@@ -51,9 +51,6 @@ namespace RLFrame
 
             HUD.InitHUD(MapGenerator.GameMap.Tiles);
 
-            //Initialise an instance of a commandmanager into the static Commands property
-            //CommandManager.Commands = new CommandManager();
-
             //create an instance of the player
             MapGenerator.CreatePlayer();
         }

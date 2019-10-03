@@ -15,35 +15,27 @@ namespace GameSystems
             }
 
             // Keyboard movement for Player character: Up arrow
-            // Decrement player's Y coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Up))
             {
-                CommandManager.MoveActorBy(actor, new Point(0, -1));
-                CommandManager.CenterOnActor(actor);
+                CommandManager.up_command.Execute(actor);
             }
 
             // Keyboard movement for Player character: Down arrow
-            // Increment player's Y coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Down))
             {
-                CommandManager.MoveActorBy(actor, new Point(0, 1));
-                CommandManager.CenterOnActor(actor);
+                CommandManager.down_command.Execute(actor);
             }
 
             // Keyboard movement for Player character: Left arrow
-            // Decrement player's X coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Left))
             {
-                CommandManager.MoveActorBy(actor, new Point(-1, 0));
-                CommandManager.CenterOnActor(actor);
+                CommandManager.left_command.Execute(actor);
             }
 
             // Keyboard movement for Player character: Right arrow
-            // Increment player's X coordinate by 1
             if (SadConsole.Global.KeyboardState.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Right))
             {
-                CommandManager.MoveActorBy(actor, new Point(1, 0));
-                CommandManager.CenterOnActor(actor);
+                CommandManager.right_command.Execute(actor);
             }
         }
 
