@@ -39,7 +39,7 @@ namespace GameSystems
             }
         }
 
-
+        #region For-Later
         //Could be modified later for an 'Enter character name' section
         private static string _stringValue = string.Empty;
         public static void MatchInputToString()
@@ -53,5 +53,6 @@ namespace GameSystems
                 _stringValue += keyValue;
             }
         }
+        #endregion
     }
 }
