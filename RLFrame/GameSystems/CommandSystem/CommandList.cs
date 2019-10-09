@@ -1,5 +1,5 @@
 ﻿using ConsoleLayers;
-using DataModels;
+using DataModels.Entities;
 using GameSystems.CommandSystem;
 using Microsoft.Xna.Framework;
 using System;
@@ -61,6 +61,15 @@ namespace GameSystems
             }
             else
                 return;
+        }
+    }
+
+    public class AttackCommand : ICommandBinary
+    {
+        public void Execute(Actor attacker, Actor defender)
+        {
+            var CombatSystem = new Combat();
+            CombatSystem.Attack(attacker, defender);
         }
     }
 }

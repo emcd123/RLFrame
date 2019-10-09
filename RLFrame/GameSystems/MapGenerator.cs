@@ -1,5 +1,6 @@
 ﻿using ConsoleLayers;
 using DataModels;
+using DataModels.Entities;
 using Microsoft.Xna.Framework;
 using SadConsole;
 using SadConsole.Components;
@@ -20,25 +21,37 @@ namespace GameSystems
         public static int MinRoomSize = 4;
         public static int MaxRoomSize = 15;
 
+        // Loads a Map into the MapConsole
+        public static void LoadMap(Map map)
+        {
+            // First load the map's tiles into the console
+            HUD.MapScrollConsole = new ScrollingConsole(HUD.MapWidth, HUD.MapHeight, Global.FontDefault, new Rectangle(0, 0, HUD.MapWidth, HUD.MapHeight), map.Tiles);
+
+            // Now Sync all of the map's entities
+            HUD.EntitySyncTools.SyncMapEntities(map);
+
+            HUD.MapConsole.Children.Add(HUD.MapScrollConsole);
+        }
+
         // Create a player using SadConsole's Entity class
         public static void CreatePlayer()
         {
             Player = new Player(Color.Yellow, Color.Transparent);
-            Point starting_coords = new Point(20, 10);
-            Player.Position = starting_coords;
-            while (!IsTileWalkable(Player.Position, HUD.MapWidth, HUD.MapHeight))
-            {
-                var a = rng.Next(0, HUD.MapWidth);
-                var b = rng.Next(0, HUD.MapHeight);
-                starting_coords = new Point(a, b);
-                Player.Position = starting_coords;
-            }
-            
-            // add the EntityViewSyncComponent to the player
             Player.Components.Add(new EntityViewSyncComponent());
-            // add the player Entity to our console
-            // so it will display on screen
-            HUD.MapScrollConsole.Children.Add(MapGenerator.Player);
+
+            // Place the player on the first non-movement-blocking tile on the map
+            for (int i = 0; i < GameMap.Tiles.Length; i++)
+            {
+                if (!GameMap.Tiles[i].IsBlockingMove)
+                {
+                    // Set the player's position to the index of the current map position
+                    Player.Position = SadConsole.Helpers.GetPointFromIndex(i, GameMap.Width);
+                    break;
+                }
+            }
+
+            // add the player to the Map's collection of Entities
+            GameMap.Add(Player);
         }
         #region Alternate Create Player
         // Create a player using the Player class
@@ -60,6 +73,47 @@ namespace GameSystems
             Player.Components.Add(new EntityViewSyncComponent());
         }
         #endregion
+
+        // Create some random monsters with random attack and defense values
+        // and drop them all over the map in
+        // random places.
+        public static void CreateMonsters()
+        {
+            // number of monsters to create
+            int numMonsters = 10;
+
+            // random position generator
+            Random rndNum = new Random();
+
+            // Create several monsters and 
+            // pick a random position on the map to place them.
+            // check if the placement spot is blocking (e.g. a wall)
+            // and if it is, try a new position
+            for (int i = 0; i < numMonsters; i++)
+            {
+                int monsterPosition = 0;
+                Monster newMonster = new Monster(Color.Blue, Color.Transparent);
+                newMonster.Components.Add(new EntityViewSyncComponent());
+                while (GameMap.Tiles[monsterPosition].IsBlockingMove)
+                {
+                    // pick a random spot on the map
+                    monsterPosition = rndNum.Next(0, HUD.MapWidth * HUD.MapHeight);
+                }
+
+                // plug in some magic numbers for attack and defense values
+                newMonster.Defense = rndNum.Next(0, 10);
+                newMonster.DefenseChance = rndNum.Next(0, 50);
+                newMonster.Attack = rndNum.Next(0, 10);
+                newMonster.AttackChance = rndNum.Next(0, 50);
+                newMonster.Name = "a common troll";
+
+                // Set the monster's new position
+                // Note: this fancy math will be replaced by a new helper method
+                // in the next revision of SadConsole
+                newMonster.Position = new Point(monsterPosition % HUD.MapWidth, monsterPosition / HUD.MapWidth);
+                GameMap.Add(newMonster);
+            }
+        }
 
         // Carve out a rectangular floor using the TileFloors class
         public static void CreateFloors(int x_start, int y_start, int room_width, int room_height)

@@ -1,12 +1,9 @@
-﻿using DataModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DataModels.Entities;
 
 namespace GameSystems
 {
     public interface ICommand
     {
-        void Execute(Actor actor);
+        void Execute(Actor primary_actor);
     }
 }

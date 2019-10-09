@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataModels
+namespace DataModels.Entities
 {
     // Creates a new player
     // Default glyph is @

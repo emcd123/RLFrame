@@ -1,4 +1,5 @@
-﻿using DataModels;
+﻿
+using DataModels.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 

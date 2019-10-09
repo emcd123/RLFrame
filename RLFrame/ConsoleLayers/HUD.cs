@@ -35,6 +35,8 @@ namespace ConsoleLayers
         public static CustomConsole MessageConsole { get; set; }
         public static MessageLogWindow MessageLog { get; set; }
 
+        public static EntitySync EntitySyncTools = new EntitySync();
+
         public static void InitHUD(TileBase[] tiles)
         {
             SadConsole.Themes.Library.Default.Colors.ControlHostBack = Color.Black;
@@ -44,7 +46,7 @@ namespace ConsoleLayers
 
             SkillsConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Blue, SkillsWidth, SkillsHeight) { Position = new Point(0, 0) };
             MapConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Black, MapWidth, MapHeight) { Position = new Point(0, 5) };
-            MapScrollConsole = new ScrollingConsole(MapWidth, MapHeight, Global.FontDefault, new Rectangle(0, 0, MapWidth, MapHeight), tiles);
+            MapScrollConsole = new ScrollingConsole(MapWidth, MapHeight, Global.FontDefault);
             SidebarInventory = new CustomConsole(Microsoft.Xna.Framework.Color.Green, InventoryWidth, InventoryHeight) { Position = new Point(60, 0) };
             SidebarPlayerProfile = new CustomConsole(Microsoft.Xna.Framework.Color.Red, ProfileWidth, ProfileHeight) { Position = new Point(60, 10) };
             MessageConsole = new CustomConsole(Microsoft.Xna.Framework.Color.Black, MessageWidth, MessageHeight) { Position = new Point(0, 25) };
@@ -65,22 +67,8 @@ namespace ConsoleLayers
             MessageLog.Position = new Point(0, 0);
 
             MessageLog.Add("Welcome to the dungeon.");
-            //MessageLog.Add("Testing 123");
-            //MessageLog.Add("Testing 1224");
-            //MessageLog.Add("Testing 123");
-            //MessageLog.Add("Testing 12543");
-            //MessageLog.Add("Testing 123");
-            //MessageLog.Add("Testing 1253");
-            //MessageLog.Add("Testing 1212");
-            //MessageLog.Add("Testing 1");
-            //MessageLog.Add("Testing");
-            //MessageLog.Add("Testing 122");
-            //MessageLog.Add("Testing 51");
-            //MessageLog.Add("Testing");
-            //MessageLog.Add("Testing 162");
-            //MessageLog.Add("Testing 16");
-            //MessageLog.Add("Testing Last");
 
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using ConsoleLayers;
-using DataModels;
+using DataModels.Entities;
 using Microsoft.Xna.Framework;
 using SadConsole;
 

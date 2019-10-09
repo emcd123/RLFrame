@@ -50,9 +50,10 @@ namespace RLFrame
             MapGenerator.GameMap = mapGen.GenerateMap(MapGenerator.GameMap.Width, MapGenerator.GameMap.Height, MapGenerator.MaxRooms, MapGenerator.MinRoomSize, MapGenerator.MaxRoomSize);
 
             HUD.InitHUD(MapGenerator.GameMap.Tiles);
-
+            MapGenerator.LoadMap(MapGenerator.GameMap);
             //create an instance of the player
             MapGenerator.CreatePlayer();
+            MapGenerator.CreateMonsters();
         }
     }
 }
