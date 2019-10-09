@@ -14,6 +14,13 @@ namespace GameSystems
         {
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(0, -1), HUD.MapWidth, HUD.MapHeight))
             {
+                Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(0, -1));
+                if (monster != null)
+                {
+                    CommandManager.attack_command.Execute(actor, monster);
+                    return;
+                }
+
                 actor.Position += new Point(0, -1);
                 CommandHelpers.CenterOnActor(actor);
             }
@@ -28,6 +35,13 @@ namespace GameSystems
         {
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(0, 1), HUD.MapWidth, HUD.MapHeight))
             {
+                Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(0, 1));
+                if (monster != null)
+                {
+                    CommandManager.attack_command.Execute(actor, monster);
+                    return;
+                }
+
                 actor.Position += new Point(0, 1);
                 CommandHelpers.CenterOnActor(actor);
             }
@@ -42,6 +56,13 @@ namespace GameSystems
         {
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(-1, 0), HUD.MapWidth, HUD.MapHeight))
             {
+                Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(-1, 0));
+                if (monster != null)
+                {
+                    CommandManager.attack_command.Execute(actor, monster);
+                    return;
+                }
+
                 actor.Position += new Point(-1, 0);
                 CommandHelpers.CenterOnActor(actor);
             }
@@ -55,7 +76,14 @@ namespace GameSystems
         public void Execute(Actor actor)
         {
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(1, 0), HUD.MapWidth, HUD.MapHeight))
-            {
+            {                
+                Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(1, 0));
+                if(monster != null)
+                {
+                    CommandManager.attack_command.Execute(actor, monster);
+                    return;
+                }
+
                 actor.Position += new Point(1, 0);
                 CommandHelpers.CenterOnActor(actor);
             }
@@ -69,7 +97,7 @@ namespace GameSystems
         public void Execute(Actor attacker, Actor defender)
         {
             var CombatSystem = new Combat();
-            CombatSystem.Attack(attacker, defender);
+            CombatSystem.Attack(attacker, defender);            
         }
     }
 }
