@@ -1,0 +1,58 @@
+﻿********************************************
+            TO DO
+********************************************
+
+********************************************
+HIGH Priority
+********************************************
+
+1) Enemy AI
+	=> Create Basic movement AI for monsters
+
+2) Town Map Generator
+	=> Set map for the upper level of games dungeon
+	=> Create shops and npc
+
+3) NPC Townspeoples AI
+	=> Implement basic Drunken Walk AI for npc's present in the town map
+
+4) Design Pattern - Monster Spawns
+	=> Select pattern
+	=> Create monster spawners
+	=> Create monster type generator
+
+5) User Interface
+	=> Create Main Menu
+
+	=> Inventory Menu
+
+	=> Display Equipped Items
+
+	=> Shop Menus
+
+6) Serialization
+	=> Json storage of game data
+	=> Save and Load features
+	=> SQLite storage of Json string
+
+7) Scheduling System
+
+********************************************
+LOW Priority
+********************************************
+
+1)  Map Generation Improvements
+
+2)  Fix Scrollview and Viewport
+
+3)  Revamp Combat Rules
+
+
+********************************************
+            IN PROGRESS
+********************************************
+
+
+********************************************
+            COMPLETED
+********************************************
