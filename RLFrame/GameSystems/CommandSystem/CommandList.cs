@@ -1,4 +1,5 @@
 ﻿using ConsoleLayers;
+using DataModels;
 using DataModels.Entities;
 using GameSystems.CommandSystem;
 using Microsoft.Xna.Framework;
@@ -15,12 +16,19 @@ namespace GameSystems
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(0, -1), HUD.MapWidth, HUD.MapHeight))
             {
                 Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(0, -1));
+                Item item = MapGenerator.GameMap.GetEntityAt<Item>(actor.Position + new Point(0, -1));
                 if (monster != null)
                 {
                     CommandManager.attack_command.Execute(actor, monster);
                     return;
                 }
-
+                // if there's an item here,
+                // try to pick it up
+                else if (item != null)
+                {
+                    CommandManager.pickup_command.Execute(actor, item);
+                    return;
+                }
                 actor.Position += new Point(0, -1);
                 CommandHelpers.CenterOnActor(actor);
             }
@@ -36,12 +44,19 @@ namespace GameSystems
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(0, 1), HUD.MapWidth, HUD.MapHeight))
             {
                 Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(0, 1));
+                Item item = MapGenerator.GameMap.GetEntityAt<Item>(actor.Position + new Point(0, 1));
                 if (monster != null)
                 {
                     CommandManager.attack_command.Execute(actor, monster);
                     return;
                 }
-
+                // if there's an item here,
+                // try to pick it up
+                else if (item != null)
+                {
+                    CommandManager.pickup_command.Execute(actor, item);
+                    return;
+                }
                 actor.Position += new Point(0, 1);
                 CommandHelpers.CenterOnActor(actor);
             }
@@ -57,9 +72,17 @@ namespace GameSystems
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(-1, 0), HUD.MapWidth, HUD.MapHeight))
             {
                 Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(-1, 0));
+                Item item = MapGenerator.GameMap.GetEntityAt<Item>(actor.Position + new Point(-1, 0));
                 if (monster != null)
                 {
                     CommandManager.attack_command.Execute(actor, monster);
+                    return;
+                }
+                // if there's an item here,
+                // try to pick it up
+                else if (item != null)
+                {
+                    CommandManager.pickup_command.Execute(actor, item);
                     return;
                 }
 
@@ -78,9 +101,17 @@ namespace GameSystems
             if (MapGenerator.IsTileWalkable(actor.Position + new Point(1, 0), HUD.MapWidth, HUD.MapHeight))
             {                
                 Monster monster = MapGenerator.GameMap.GetEntityAt<Monster>(actor.Position + new Point(1, 0));
-                if(monster != null)
+                Item item = MapGenerator.GameMap.GetEntityAt<Item>(actor.Position + new Point(1, 0));
+                if (monster != null)
                 {
                     CommandManager.attack_command.Execute(actor, monster);
+                    return;
+                }
+                // if there's an item here,
+                // try to pick it up
+                else if (item != null)
+                {
+                    CommandManager.pickup_command.Execute(actor, item);
                     return;
                 }
 
@@ -98,6 +129,18 @@ namespace GameSystems
         {
             var CombatSystem = new Combat();
             CombatSystem.Attack(attacker, defender);            
+        }
+    }
+
+    public class PickupCommand : ICommandItem
+    {
+        public void Execute(Actor actor, Item item)
+        {
+            // Add the item to the Actor's inventory list
+            // and then destroy it
+            actor.Inventory.Add(item);
+            HUD.MessageLog.Add($"{actor.Name} picked up {item.Name}");
+            item.Destroy(MapGenerator.GameMap);
         }
     }
 }

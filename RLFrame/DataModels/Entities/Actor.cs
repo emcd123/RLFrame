@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace DataModels.Entities
 {
@@ -14,6 +15,9 @@ namespace DataModels.Entities
         public int Defense { get; set; } // defensive strength
         public int DefenseChance { get; set; } // percent chance of successfully blocking a hit
         public int Gold { get; set; } // amount of gold carried
+
+
+        public List<Item> Inventory = new List<Item>(); // the player's collection of items
 
         protected Actor(Color foreground, Color background, int glyph, int width = 1, int height = 1) : base(foreground, background, glyph, width, height)
         {

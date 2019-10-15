@@ -5,9 +5,12 @@ using System.Text;
 
 namespace DataModels.Entities
 {
+    public interface IEntity
+    {
+    }
     // Extends the SadConsole.Entities.Entity class
     // by adding an ID to it using GoRogue's ID system
-    public abstract class Entity : SadConsole.Entities.Entity, GoRogue.IHasID
+    public abstract class Entity : SadConsole.Entities.Entity, GoRogue.IHasID, IEntity
     {
         public uint ID { get; private set; } // stores the entity's unique identification number
 

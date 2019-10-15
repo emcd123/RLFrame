@@ -18,6 +18,8 @@ namespace GameSystems
         public static ICommand down_command = new DownCommand();
         public static ICommand left_command = new LeftCommand();
         public static ICommand right_command = new RightCommand();
+
         public static ICommandBinary attack_command = new AttackCommand();
+        public static ICommandItem pickup_command = new PickupCommand();
     }
 }

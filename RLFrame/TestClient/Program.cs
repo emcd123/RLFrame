@@ -54,6 +54,8 @@ namespace RLFrame
             //create an instance of the player
             MapGenerator.CreatePlayer();
             MapGenerator.CreateMonsters();
+            // spawn some loot
+            MapGenerator.CreateLoot();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ConsoleLayers;
+using DataModels;
 using DataModels.Entities;
 using GoRogue.DiceNotation;
 using System;
@@ -121,16 +122,42 @@ namespace GameSystems
         // the number of Gold dropped.
         private static void ResolveDeath(Actor defender)
         {
+            // Set up a customized death message
+            StringBuilder deathMessage = new StringBuilder($"{defender.Name} died");
+
+            // dump the dead actor's inventory (if any)
+            // at the map position where it died
+            if (defender.Inventory.Count > 0)
+            {
+                deathMessage.Append(" and dropped");
+
+                foreach (Item item in defender.Inventory)
+                {
+                    // move the Item to the place where the actor died
+                    item.Position = defender.Position;
+
+                    // Now let the MultiSpatialMap know that the Item is visible
+                    MapGenerator.GameMap.Add(item);
+
+                    // Append the item to the deathMessage
+                    deathMessage.Append(", " + item.Name);
+                }
+
+                // Clear the actor's inventory. Not strictly
+                // necessary, but makes for good coding habits!
+                defender.Inventory.Clear();
+            }
+            else
+            {
+                // The monster carries no loot, so don't show any loot dropped
+                deathMessage.Append(".");
+            }
+
+            // actor goes bye-bye
             MapGenerator.GameMap.Remove(defender);
 
-            if (defender is Player)
-            {
-                HUD.MessageLog.Add($" {defender.Name} was killed.");
-            }
-            else if (defender is Monster)
-            {
-                HUD.MessageLog.Add($"{defender.Name} died and dropped {defender.Gold} gold coins.");
-            }
+            // Now show the deathMessage in the messagelog
+            HUD.MessageLog.Add(deathMessage.ToString());
         }
     }
 }
