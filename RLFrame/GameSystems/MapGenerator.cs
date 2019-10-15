@@ -37,7 +37,6 @@ namespace GameSystems
         public static void CreatePlayer()
         {
             Player = new Player(Color.Yellow, Color.Transparent);
-            Player.Components.Add(new EntityViewSyncComponent());
 
             // Place the player on the first non-movement-blocking tile on the map
             for (int i = 0; i < GameMap.Tiles.Length; i++)
@@ -70,7 +69,6 @@ namespace GameSystems
                 }
             }
             // Add the ViewPort sync component to the player entity
-            Player.Components.Add(new EntityViewSyncComponent());
         }
         #endregion
 
@@ -93,7 +91,6 @@ namespace GameSystems
             {
                 int monsterPosition = 0;
                 Monster newMonster = new Monster(Color.Blue, Color.Transparent);
-                newMonster.Components.Add(new EntityViewSyncComponent());
                 while (GameMap.Tiles[monsterPosition].IsBlockingMove)
                 {
                     // pick a random spot on the map
@@ -130,9 +127,7 @@ namespace GameSystems
                 // Create an Item with some standard attributes
                 int lootPosition = 0;
                 Item newLoot = new Item(Color.Green, Color.Transparent, "fancy shirt", 'L', 2);
-
-                // Let SadConsole know that this Item's position be tracked on the map
-                newLoot.Components.Add(new EntityViewSyncComponent());
+                
 
                 // Try placing the Item at lootPosition; if this fails, try random positions on the map's tile array
                 while (GameMap.Tiles[lootPosition].IsBlockingMove)

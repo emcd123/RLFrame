@@ -18,7 +18,6 @@ namespace DataModels.Entities
             {
                 // monsters are made out of spork, obvs.
                 Item newLoot = new Item(Color.HotPink, Color.Transparent, "spork", 'L', 2);
-                newLoot.Components.Add(new SadConsole.Components.EntityViewSyncComponent());
                 Inventory.Add(newLoot);
             }
         }

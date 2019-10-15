@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Text;
+using SadConsole.Components;
 
 namespace DataModels.Entities
 {
@@ -22,6 +23,8 @@ namespace DataModels.Entities
 
             // Create a new unique identifier for this entity
             ID = Map.IDGenerator.UseID();
+            // Ensure that the entity position/offset is tracked by scrollingconsoles
+            Components.Add(new EntityViewSyncComponent());
         }
     }
 }
